@@ -11,6 +11,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.arg_a.bakingapp.data.Baked;
 import com.example.arg_a.bakingapp.data.Ingredient;
+import com.example.arg_a.bakingapp.data.Step;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,10 +27,18 @@ public class BackingAPI {
     private static final String BAKED_SERVINGS      = "servings";
     private static final String BAKED_IMAGE         = "image";
     private static final String BAKED_INGREDIENTS   = "ingredients";
+    private static final String BAKED_STEPS         = "steps";
 
     private static final String INGREDIENT_QUANTITY     = "quantity";
     private static final String INGREDIENT_MEASURE      = "measure";
     private static final String INGREDIENT_INGREDIENT   = "ingredient";
+
+    private static final String STEPS_ID                = "id";
+    private static final String STEPS_SHORTDESCRIPTION  = "shortDescription";
+    private static final String STEPS_DESCRIPTION       = "description";
+    private static final String STEPS_VIDEOURL          = "videoURL";
+    private static final String STEPS_THUMBNAILURL      = "thumbnailURL";
+
 
 
     /**
@@ -55,6 +64,7 @@ public class BackingAPI {
                     try {
                         bakeds.add(parseJSONtoBaked(response.getJSONObject(i)));
                         bakeds.get(i).setIngredients(getIngredients(response.getJSONObject(i)));
+                        bakeds.get(i).setSteps(getSteps(response.getJSONObject(i)));
                         Log.d("parse", bakeds.toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -73,7 +83,23 @@ public class BackingAPI {
         queue.add(jsonArrayRequest);
     }
 
-    private static synchronized List<Ingredient> getIngredients(JSONObject jsonBaked) throws JSONException {
+    private static Baked parseJSONtoBaked(JSONObject jsonBaked) throws JSONException {
+        Baked baked = new Baked();
+
+        int id          = jsonBaked.getInt(BAKED_ID);
+        String name     = jsonBaked.getString(BAKED_NAME);
+        int servings    = jsonBaked.getInt(BAKED_SERVINGS);
+        String image    = jsonBaked.getString(BAKED_IMAGE);
+
+        baked.setId(id);
+        baked.setName(name);
+        baked.setServings(servings);
+        baked.setImage(image);
+
+        return baked;
+    }
+
+    private static List<Ingredient> getIngredients(JSONObject jsonBaked) throws JSONException {
 
         List<Ingredient> ingredientList = new ArrayList<>();
         Ingredient ingredient = new Ingredient();
@@ -98,20 +124,31 @@ public class BackingAPI {
 
     }
 
+    private static List<Step> getSteps(JSONObject jsonBaked) throws JSONException {
 
-    private static Baked parseJSONtoBaked(JSONObject jsonBaked) throws JSONException {
-        Baked baked = new Baked();
+        List<Step> stepList = new ArrayList<>();
+        Step step = new Step();
 
-        int id          = jsonBaked.getInt(BAKED_ID);
-        String name     = jsonBaked.getString(BAKED_NAME);
-        int servings    = jsonBaked.getInt(BAKED_SERVINGS);
-        String image    = jsonBaked.getString(BAKED_IMAGE);
+        JSONArray jsonSteps = jsonBaked.getJSONArray(BAKED_STEPS);
 
-        baked.setId(id);
-        baked.setName(name);
-        baked.setServings(servings);
-        baked.setImage(image);
+        for (int i = 0; i < jsonSteps.length(); i++) {
 
-        return baked;
+            JSONObject jsonObjectSteps = jsonSteps.getJSONObject(i);
+
+            int id = jsonObjectSteps.getInt(STEPS_ID);
+            String shortDescription = jsonObjectSteps.getString(STEPS_SHORTDESCRIPTION);
+            String description = jsonObjectSteps.getString(STEPS_DESCRIPTION);
+            String videoURL = jsonObjectSteps.getString(STEPS_VIDEOURL);
+            String thumbnailURL = jsonObjectSteps.getString(STEPS_THUMBNAILURL);
+
+            step.setId(id);
+            step.setShortDescription(shortDescription);
+            step.setDescription(description);
+            step.setVideoURL(videoURL);
+            step.setThumbnailURL(thumbnailURL);
+        }
+
+        return stepList;
+
     }
 }
