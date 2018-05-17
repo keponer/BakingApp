@@ -39,8 +39,6 @@ public class BackingAPI {
     private static final String STEPS_VIDEOURL          = "videoURL";
     private static final String STEPS_THUMBNAILURL      = "thumbnailURL";
 
-
-
     /**
      * VolleyCallback Interface
      */
@@ -49,6 +47,12 @@ public class BackingAPI {
         void onError();
     }
 
+    /**
+     * With a callback return a List of Baked, including ingredients and steps
+     * @param context APP Context
+     * @param url URL to get JSONArray
+     * @param callback Callback
+     */
     public static synchronized void getBaked(Context context, String url, final VolleyCallback callback){
 
         final ArrayList<Baked> bakeds = new ArrayList<>();
@@ -83,6 +87,12 @@ public class BackingAPI {
         queue.add(jsonArrayRequest);
     }
 
+    /**
+     * Given a JSONObject creates a baked object with it
+     * @param jsonBaked JSONObject to parse
+     * @return Baked object
+     * @throws JSONException
+     */
     private static Baked parseJSONtoBaked(JSONObject jsonBaked) throws JSONException {
         Baked baked = new Baked();
 
@@ -99,6 +109,12 @@ public class BackingAPI {
         return baked;
     }
 
+    /**
+     * Given a JSONObject creates a List of Ingredient
+     * @param jsonBaked JSONObject contains a baked
+     * @return List of Ingredients
+     * @throws JSONException
+     */
     private static List<Ingredient> getIngredients(JSONObject jsonBaked) throws JSONException {
 
         List<Ingredient> ingredientList = new ArrayList<>();
@@ -124,6 +140,12 @@ public class BackingAPI {
 
     }
 
+    /**
+     * Given a JSONObject baked return a list of steps
+     * @param jsonBaked JSONObject to parse
+     * @return List of steps
+     * @throws JSONException
+     */
     private static List<Step> getSteps(JSONObject jsonBaked) throws JSONException {
 
         List<Step> stepList = new ArrayList<>();
