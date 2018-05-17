@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.arg_a.bakingapp.Utilities.BackingAPI;
 import com.example.arg_a.bakingapp.data.Baked;
@@ -39,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
                 new BackingAPI.VolleyCallback() {
                     @Override
                     public void onSuccess(ArrayList<Baked> arrayList) {
+                        Log.d("entra","entra");
 
                         recipeCardAdapter.updateBakedList(arrayList);
+
 
                     }
 

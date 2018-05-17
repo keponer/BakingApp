@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,10 +39,11 @@ public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.Re
     @Override
     public void onBindViewHolder(@NonNull RecipeCardAdapter.RecipeCardAdapterViewHolder holder, int position) {
 
+        Log.d("bind", Integer.toString(position));
         Baked baked = bakedList.get(position);
 
         holder.bakedName.setText(baked.getName());
-        holder.bakedServings.setText(baked.getServings());
+        holder.bakedServings.setText(Integer.toString(baked.getServings()));
         holder.bakedCard.setTag(baked.getId());
 
     }
@@ -71,6 +73,15 @@ public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.Re
             super(itemView);
 
             ButterKnife.bind(this, itemView);
+
+            bakedCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("clickado", "clickado");
+                    getAdapterPosition();
+                }
+            });
+
         }
     }
 }
