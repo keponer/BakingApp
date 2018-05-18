@@ -18,7 +18,6 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
     private List<Ingredient> ingredientList;
 
     public RecipeStepAdapter(Context context, List<Step> stepList, List<Ingredient> ingredientList){
-
         this.context        = context;
         this.stepList       = stepList;
         this.ingredientList = ingredientList;
@@ -37,7 +36,8 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
 
     @Override
     public int getItemCount() {
-        return 0;
+        if(stepList == null) return 0;
+        else return stepList.size() + 1;
     }
 
     public class RecipeStepAdapterViewHolder extends RecyclerView.ViewHolder {
