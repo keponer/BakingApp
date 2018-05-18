@@ -1,6 +1,8 @@
 package com.example.arg_a.bakingapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.arg_a.bakingapp.data.Baked;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -78,6 +82,13 @@ public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.Re
                 @Override
                 public void onClick(View v) {
                     Log.d("clickado", "clickado");
+
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("baked", Parcels.wrap(bakedList.get(getAdapterPosition())));
+                    Intent intent = new Intent(context, StepsActivity.class);
+                    intent.putExtras(bundle);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
                     getAdapterPosition();
                 }
             });

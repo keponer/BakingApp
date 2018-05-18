@@ -3,7 +3,10 @@ package com.example.arg_a.bakingapp.data;
 import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
 @Generated("com.robohorse.robopojogenerator")
+@Parcel
 public class Step {
 
 	@SerializedName("videoURL")
