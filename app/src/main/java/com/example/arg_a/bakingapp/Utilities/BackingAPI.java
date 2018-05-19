@@ -69,7 +69,6 @@ public class BackingAPI {
                         bakeds.add(parseJSONtoBaked(response.getJSONObject(i)));
                         bakeds.get(i).setIngredients(getIngredients(response.getJSONObject(i)));
                         bakeds.get(i).setSteps(getSteps(response.getJSONObject(i)));
-                        Log.d("parse", bakeds.toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

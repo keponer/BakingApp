@@ -1,6 +1,8 @@
 package com.example.arg_a.bakingapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.arg_a.bakingapp.data.Ingredient;
 import com.example.arg_a.bakingapp.data.Step;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -69,6 +73,23 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
         public RecipeStepAdapterViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+
+
+                recipeStepCardView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if(getAdapterPosition() > 0){
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelable("step", Parcels.wrap(stepList.get(getAdapterPosition()-1)));
+                            Intent intent = new Intent(context, ViewStepActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtras(bundle);
+                            context.startActivity(intent);
+                        }
+                    }
+                });
         }
     }
 }

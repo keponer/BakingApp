@@ -40,11 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 new BackingAPI.VolleyCallback() {
                     @Override
                     public void onSuccess(ArrayList<Baked> arrayList) {
-                        Log.d("entra","entra");
-
                         recipeCardAdapter.updateBakedList(arrayList);
-
-
                     }
 
                     @Override

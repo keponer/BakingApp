@@ -43,7 +43,6 @@ public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.Re
     @Override
     public void onBindViewHolder(@NonNull RecipeCardAdapter.RecipeCardAdapterViewHolder holder, int position) {
 
-        Log.d("bind", Integer.toString(position));
         Baked baked = bakedList.get(position);
 
         holder.bakedName.setText(baked.getName());
@@ -81,7 +80,6 @@ public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.Re
             bakedCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("clickado", bakedList.get(getAdapterPosition()).getSteps().toString());
 
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("baked", Parcels.wrap(bakedList.get(getAdapterPosition())));
