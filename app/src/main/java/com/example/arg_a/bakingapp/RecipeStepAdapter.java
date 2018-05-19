@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,9 +45,11 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
 
         if(position == 0){
             holder.recipeStepName.setText("Ingredients");
+            Log.d("steplist", stepList.toString());
         }
         else{
             holder.recipeStepName.setText(stepList.get(position-1).getDescription());
+            Log.d(Integer.toString(position), stepList.get(position-1).getDescription());
         }
 
     }

@@ -43,6 +43,6 @@ public class StepsActivity extends AppCompatActivity {
         activityStepsRecyclerView.setItemAnimator(new DefaultItemAnimator());
         activityStepsRecyclerView.setAdapter(recipeStepAdapter);
 
-        Log.d("StepsActivity", baked.getName());
+        Log.d("StepsActivity", baked.getSteps().toString());
     }
 }

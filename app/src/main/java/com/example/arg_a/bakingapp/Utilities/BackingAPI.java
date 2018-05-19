@@ -122,13 +122,16 @@ public class BackingAPI {
     private static List<Ingredient> getIngredients(JSONObject jsonBaked) throws JSONException {
 
         List<Ingredient> ingredientList = new ArrayList<>();
-        Ingredient ingredient = new Ingredient();
+        Ingredient ingredient;
 
         JSONArray jsonIngredients = jsonBaked.getJSONArray(BAKED_INGREDIENTS);
 
         for(int i = 0;i<jsonIngredients.length();i++){
 
             JSONObject jsonObjectIngredients = jsonIngredients.getJSONObject(i);
+
+            ingredient = new Ingredient();
+
             Double quantity         = jsonObjectIngredients.getDouble(INGREDIENT_QUANTITY);
             String measure          = jsonObjectIngredients.getString(INGREDIENT_MEASURE);
             String nameIngredient   = jsonObjectIngredients.getString(INGREDIENT_INGREDIENT);
@@ -153,13 +156,15 @@ public class BackingAPI {
     private static List<Step> getSteps(JSONObject jsonBaked) throws JSONException {
 
         List<Step> stepList = new ArrayList<>();
-        Step step = new Step();
+        Step step;
 
         JSONArray jsonSteps = jsonBaked.getJSONArray(BAKED_STEPS);
 
         for (int i = 0; i < jsonSteps.length(); i++) {
 
             JSONObject jsonObjectSteps = jsonSteps.getJSONObject(i);
+
+            step = new Step();
 
             int id = jsonObjectSteps.getInt(STEPS_ID);
             String shortDescription = jsonObjectSteps.getString(STEPS_SHORTDESCRIPTION);
@@ -172,7 +177,10 @@ public class BackingAPI {
             step.setDescription(description);
             step.setVideoURL(videoURL);
             step.setThumbnailURL(thumbnailURL);
+
+            stepList.add(step);
         }
+
 
         return stepList;
 

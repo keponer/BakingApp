@@ -81,7 +81,7 @@ public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.Re
             bakedCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("clickado", "clickado");
+                    Log.d("clickado", bakedList.get(getAdapterPosition()).getSteps().toString());
 
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("baked", Parcels.wrap(bakedList.get(getAdapterPosition())));
