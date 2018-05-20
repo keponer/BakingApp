@@ -82,7 +82,8 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
 
                         if(getAdapterPosition() > 0){
                             Bundle bundle = new Bundle();
-                            bundle.putParcelable("step", Parcels.wrap(stepList.get(getAdapterPosition()-1)));
+                            bundle.putParcelable("steps", Parcels.wrap(stepList));
+                            bundle.putInt("id", getAdapterPosition()-1);
                             Intent intent = new Intent(context, ViewStepActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtras(bundle);
