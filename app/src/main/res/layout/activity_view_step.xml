@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ViewStepActivity">
 
-    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+    <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/exo_player"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></com.google.android.exoplayer2.ui.SimpleExoPlayerView>
+        app:layout_constraintTop_toTopOf="parent"></com.google.android.exoplayer2.ui.PlayerView>
 
 
     <android.support.constraint.Guideline
@@ -48,10 +48,30 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Button"
         android:onClick="nextStep"
+        android:text="N Step"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/step_description" />
+
+    <Button
+        android:id="@+id/previous_step"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="previousStep"
+        android:text="P Step"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/step_description" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
 
 </android.support.constraint.ConstraintLayout>
