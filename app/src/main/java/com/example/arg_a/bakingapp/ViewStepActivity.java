@@ -39,8 +39,6 @@ public class ViewStepActivity extends AppCompatActivity {
 
     private List<Step> stepList;
     private int id;
-
-
     private SimpleExoPlayer player;
 
     @BindView(R.id.exo_player)

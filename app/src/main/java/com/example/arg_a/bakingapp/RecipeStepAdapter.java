@@ -49,13 +49,11 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
 
         if(position == 0){
             holder.recipeStepName.setText("Ingredients");
-            Log.d("steplist", stepList.toString());
         }
         else{
             holder.recipeStepName.setText(stepList.get(position-1).getDescription());
             Log.d(Integer.toString(position), stepList.get(position-1).getDescription());
         }
-
     }
 
     @Override
@@ -73,8 +71,6 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
         public RecipeStepAdapterViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
-
 
                 recipeStepCardView.setOnClickListener(new View.OnClickListener() {
                     @Override
